@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Header } from 'semantic-ui-react';
-import { useComputed, useAsObservableSource, Observer } from "mobx-react-lite";
+import { useAsObservableSource, Observer } from "mobx-react-lite";
 import { Redirect } from "react-router";
 import { useCommentsStore } from "../../../stores";
 import { Loading } from "../../utils/Loading";
@@ -41,7 +41,7 @@ interface CommentsInfoProps {
 const CommentsInfo: React.FC<CommentsInfoProps> = ({ postId }) => {
   const commentsStore = useCommentsStore();
   const comments = commentsStore.getCommentsState(postId).comments;
-  const items = useComputed(
+  const items = useMemo(
     () => comments.map(getItem),
     [comments]
   );
