@@ -13,7 +13,6 @@ export const usePostsStore = () => {
 }
 
 export const PostsStoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  debugger;
   const services = useContext(ServicesContext)!;
   const source = useAsObservableSource({ services });
   const store = useLocalStore<Store>(createPostsStore, source);

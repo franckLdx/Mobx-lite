@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-I wrote this project to got a better understanding of [Mobx](https://mobx.js.org/) and [Mobx-react-lite](https://mobx-react.js.org/). It comes with a [post]()
+I wrote this project to got a better understanding of [Mobx](https://mobx.js.org/) and [Mobx-react-lite](https://mobx-react.js.org/). It comes with this [post blog]()
 
 ## Available Scripts
 

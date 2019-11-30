@@ -42,13 +42,13 @@ export const createStore = ({ postId, api }: { postId: number, api: Services }) 
       return this.canEdit() && fielded;
     },
     updateField(name: Fields, value: string | undefined) {
-      runInAction(() => {
+      runInAction('update field', () => {
         this.fields[name] = value;
         this.saveStatus = 'toSave';
       });
     },
     toggleOpen() {
-      runInAction(() => {
+      runInAction('toggle Open', () => {
         this.openStatus = !this.openStatus
         if (!this.openStatus) {
           this.fields = initialState.fields;
@@ -57,13 +57,13 @@ export const createStore = ({ postId, api }: { postId: number, api: Services }) 
       })
     },
     async save() {
-      runInAction(() => this.saveStatus = 'saving');
+      runInAction('saving', () => this.saveStatus = 'saving');
       try {
         await api.addComments(postId, this.fields.title!, this.fields.comment!, this.fields.email!)
-        runInAction(() => this.saveStatus = 'successfull');
+        runInAction('save successfull', () => this.saveStatus = 'successfull');
       }
       catch (err) {
-        runInAction(() => this.saveStatus = 'failure');
+        runInAction('save failure', () => this.saveStatus = 'failure');
       }
     },
     getMessage() {

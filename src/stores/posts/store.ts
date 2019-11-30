@@ -6,7 +6,6 @@ import { Services } from '../../services';
 configure({ enforceActions: "observed" })
 
 export function createPostsStore({ services }: { services: Services }) {
-  debugger;
   return {
     loadStatus: 'initial' as LoadStatus,
     posts: [] as Post[],
