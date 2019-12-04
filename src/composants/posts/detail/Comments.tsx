@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { Header } from 'semantic-ui-react';
 import { useAsObservableSource, Observer } from "mobx-react-lite";
 import { Redirect } from "react-router";
@@ -41,17 +41,14 @@ interface CommentsInfoProps {
 const CommentsInfo: React.FC<CommentsInfoProps> = ({ postId }) => {
   const commentsStore = useCommentsStore();
   const comments = commentsStore.getCommentsState(postId).comments;
-  const items = useMemo(
-    () => comments.map(getItem),
-    [comments]
-  );
-  return (<>
+  return <>
     <Header style={{ marginTop: '10px' }} as='h3' > Comments </Header>
-    <CardsItemGroup>
-      {items}
-    </CardsItemGroup>
+    <Observer>{() =>
+      <CardsItemGroup>
+        {comments.map(getItem)}
+      </CardsItemGroup>
+    }</Observer>
   </>
-  );
 }
 
 const getItem = (comment: PostComment) =>

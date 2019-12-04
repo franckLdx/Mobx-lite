@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router';
 import { observer } from 'mobx-react-lite';
 import { CardItem, CardsItemGroup } from '../../utils/CardItem';
@@ -7,14 +7,9 @@ import { usePostsStore } from '../../../stores';
 
 const RawListItem: React.FC = observer(() => {
   const postsStore = usePostsStore();
-  /*eslint-disable*/
-  const items = useMemo(
-    () => postsStore.posts.map(getItem)
-    , []);
-  /*eslint-enable*/
   return (
     <CardsItemGroup>
-      {items}
+      {postsStore.posts.map(getItem)}
     </CardsItemGroup>
   );
 })
